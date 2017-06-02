@@ -18,6 +18,33 @@ public class Singer_Band implements Serializable {
 	@Column(name="name")
 	private String name;
 	@Column(name="creation_date")
-	private String creation_date;	
+	private String creation_date;
+	
+	
+	
+	
+	//Getters and Setters
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	
+	public String getCreation_date() {
+		return creation_date;
+	}
+	public void setCreation_date(String creation_date) {
+		this.creation_date = creation_date;
+	}	
 	
 }
