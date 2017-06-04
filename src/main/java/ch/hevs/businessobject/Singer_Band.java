@@ -18,6 +18,7 @@ public class Singer_Band {
 	@Column(name="creation_date")
 	private String creation_date;
 	
+	
 	/**
 	 * Relations
 	 */

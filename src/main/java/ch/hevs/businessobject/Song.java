@@ -13,7 +13,6 @@ public class Song {
 	private String title;
 	@Column(name="style")
 	private String style;
-
 	
 	/**
 	 * Relations
