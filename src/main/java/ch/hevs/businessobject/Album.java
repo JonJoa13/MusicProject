@@ -1,12 +1,11 @@
 package ch.hevs.businessobject;
 
-import java.io.Serializable;
-
+import java.util.*;
 import javax.persistence.*;
 
 @Entity
 @Table(name="Album")
-public class Album implements Serializable {
+public class Album {
 
 	
 	@Id
@@ -19,11 +18,39 @@ public class Album implements Serializable {
 	
 	
 	
-	//Relations
+	/**
+	 * Relations
+	 */
 	
+	//Artist that own the album
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Singer_Band singer_band;
+	
+	//Getter and Setter for Singer_Band
+	public Singer_Band getSinger_band() {
+		return singer_band;
+	}
+	public void setSinger_band(Singer_Band singer_band) {
+		this.singer_band = singer_band;
+	}
 
+	//Many songs in one album
+	@OneToMany(mappedBy = "album" , cascade = CascadeType.ALL)
+	private List<Song> songs;
 	
-	//Getters and Setters
+	//Getter and Singer List of Songs
+	public List<Song> getSongs() {
+		return songs;
+	}
+	public void setSongs(List<Song> songs) {
+		this.songs = songs;
+	}
+	
+	/**
+	 * Getter and Setter
+	 */
+	
+	//id
 	public Long getId() {
 		return id;
 	}
@@ -31,6 +58,7 @@ public class Album implements Serializable {
 		this.id = id;
 	}
 	
+	//Album_name
 	public String getAlbum_name() {
 		return album_name;
 	}
@@ -38,10 +66,36 @@ public class Album implements Serializable {
 		this.album_name = album_name;
 	}
 	
+	//Album_year
 	public int getAlbum_year() {
 		return album_year;
 	}
 	public void setAlbum_year(int album_year) {
+		this.album_year = album_year;
+	}
+	
+	/**
+	 * Methods
+	 */
+	
+	public void addSong(Song s){
+		s.setAlbum(this);
+		songs.add(s);
+	}
+	
+	
+	/**
+	 * Constructors
+	 */
+	
+	
+	public Album(){
+		this.songs = new ArrayList<Song>();
+	}
+	
+	public Album(String album_name, int album_year){
+		this.songs = new ArrayList<Song>();
+		this.album_name = album_name;
 		this.album_year = album_year;
 	}
 	
